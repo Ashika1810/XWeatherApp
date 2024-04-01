@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import styles from './App.module.css';
 import axios, * as others from 'axios';
+import './App.css';
 
 
 const SearchComp =({makeSearch})=>{
@@ -10,7 +10,7 @@ const SearchComp =({makeSearch})=>{
     makeSearch(city);
   }
   return(
-    <div className={styles.searchBar}>
+    <div className="searchBar">
       <input type="text"
       value={city} placeholder='Enter city name' 
       onChange={(e)=>setCity(e.target.value)}/>
@@ -22,7 +22,7 @@ const SearchComp =({makeSearch})=>{
 
 const WeatherCard =({title, data})=>{
   return(
-    <div className={styles.weathercard}>
+    <div className="weather-card">
         <h3>{title}</h3>
         <p>{data}</p>
     </div>
@@ -49,10 +49,10 @@ const WeatherDisplay = ({city})=>{
   },[city])
 
   return(
-    <div className={styles.WeatherDisplay}>
+    <div className="WeatherDisplay">
       {isLoading && <p>Loading data...</p>}
       {!isLoading && weatherData && (
-        <div className={styles.weathercards}>
+        <div className="weather-cards">
         <WeatherCard title='Temperature' data={`${weatherData.current.temp_c}°C`}/>
         <WeatherCard title='Humidity' data={`${weatherData.current.humidity}%`}/>
         <WeatherCard title='Condition' data={`${weatherData.current.condition.text}`}/>
@@ -73,7 +73,7 @@ function App() {
   }
 
   return (
-    <div className={styles.app}>
+    <div className="App">
       <SearchComp makeSearch={handleSearch}/>
       <WeatherDisplay city={city}/>
     </div>
